@@ -230,7 +230,7 @@ elif page == "Make Your Own Predictions!":
     
 
     # User inputs for prediction
-    high_blood_pressure = st.slider("If a respondent has been told they have high blood pressure by a doctor, nurse, or other health professional: st.tabs(0 - No, 1 - Yes"), min_value=0, max_value=1, value=0))
+    high_blood_pressure = st.slider("If a respondent has been told they have high blood pressure by health professional: 0 - No, 1 - Yes", min_value=0, max_value=1, value=0)
     high_cholesterol = st.slider("High Cholesterol ---> 0 - No, 1 - Yes", min_value=0, max_value=1, value=1)
     cholesterol_check = st.slider("Cholesterol Check --> 0 - No, 1 - Yes", min_value=0, max_value=1, value=0)
     bmi = st.slider("BMI ---> Choose a BMI: 10 to 100", min_value=10, max_value=100, value=50)

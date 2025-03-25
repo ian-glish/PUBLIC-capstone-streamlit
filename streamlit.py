@@ -117,7 +117,7 @@ elif page == "Exploratory Data Analysis":
         if h_selected_col:
             chart_title = f"Distribution of {h_selected_col.replace('_', ' ')}"
             if st.checkbox("Show by Diabetic Status"):
-                diabetes_color_change = {'Non-Diabetic':'yellow', 'Pre-Diabetic or Diabetic':'red'}
+                diabetes_color_change = {'Non-Diabetic':'yellow', 'Pre-Diabetic or Diabetic':'green'}
                 st.plotly_chart(px.histogram(ldf, x=h_selected_col, color = 'Diabetic Status', color_discrete_map = diabetes_color_change, title=chart_title, barmode='overlay', opacity=.8))
             else:
                 st.plotly_chart(px.histogram(ldf, x=h_selected_col, title=chart_title))
@@ -154,6 +154,7 @@ elif page == "Exploratory Data Analysis":
             if st.checkbox("Show by Diabetic Status"):
                 diabetes_color_change = {'Non-Diabetic':'yellow', 'Pre-Diabetic or Diabetic':'red'}
                 st.plotly_chart(px.histogram(ldf, x=selected_col, color='Diabetic Status', color_discrete_map = diabetes_color_change, title=chart_title, barmode='overlay', opacity = .8))
+
             else:
                 st.plotly_chart(px.histogram(ldf, x=selected_col, title=chart_title))
         
@@ -162,7 +163,7 @@ elif page == "Exploratory Data Analysis":
 # Model Training and Evaluation Page
 elif page == "Training Models & Their Evaluations":
     st.title("Classification Model Types & Trainings with Performance Evaluations")
-    st.subheader("Choose a classification model type to train on the dataset, to see its accuracy scores & corresponding confusion matrix")
+    st.subheader("Choose a classification model type to train on the dataset to see its accuracy scores & corresponding confusion matrix.")
     st.write("The baseline model had an accuracy score of 50.00%, so any of these model types need to have a higher accuracy score than the baseline to be worth using!")
 
 
@@ -206,20 +207,20 @@ elif page == "Training Models & Their Evaluations":
     if model_option == "K-Nearest Neighbors":
         ConfusionMatrixDisplay.from_estimator(model, X_test_scaled, y_test, ax=ax, cmap='Blues')
         st.pyplot(fig)
-        st.write(f"Using the {model_option} model, the confusion matrix shows a higher rate of misclassifying 'Non-Diabetic' as 'neutral or Pre-Diabetic or Diabetic' (false postives) than misclassifying 'Pre-Diabetic or Diabetic' customers as 'Non-Diabetic' (false negatives).")
-        st.write(f"This suggests the {model_option} model has a strong tendency of labeling non-diabetics as pre-diabetic or diabetic, showing a weakness of false positive labels")
+        st.write(f"Using the {model_option} model, the confusion matrix shows a higher rate of misclassifying 'Non-Diabetic' as 'neutral or Pre-Diabetic or Diabetic' (false positives) than misclassifying 'Pre-Diabetic or Diabetic' as 'Non-Diabetic' (false negatives).")
+        st.write(f"This suggests the {model_option} model has a strong tendency to label non-diabetics as pre-diabetic or diabetic, showing a weakness in producing false positive labels.")
         st.write(f"**Out of all the model types, {model_option} had the 3rd highest test set accuracy score, even with the best K value of 45.**")
     elif model_option == "Logistic Regression":
         ConfusionMatrixDisplay.from_estimator(model, X_test_scaled, y_test, ax=ax, cmap='Greens')
         st.pyplot(fig)
-        st.write(f"Using the {model_option} model, the confusion matrix shows a higher rate of misclassifying 'Non-Diabetic' as 'neutral or Pre-Diabetic or Diabetic' (false postives) than misclassifying 'Pre-Diabetic or Diabetic' customers as 'Non-Diabetic' (false negatives).")
-        st.write(f"This suggests the {model_option} model has a strong tendency of labeling non-diabetics as pre-diabetic or diabetic, showing a weakness of false positive labels.")
+        st.write(f"Using the {model_option} model, the confusion matrix shows a higher rate of misclassifying 'Non-Diabetic' as 'neutral or Pre-Diabetic or Diabetic' (false postives) than misclassifying 'Pre-Diabetic or Diabetic' as 'Non-Diabetic' (false negatives).")
+        st.write(f"This suggests the {model_option} model has a strong tendency to label non-diabetics as pre-diabetic or diabetic, showing a weakness in producing false positive labels.")
         st.write(f"**Out of all the model types, {model_option} had the highest test set accuracy score. This logistic regression model will be used on the 'Make Your Own Predictions!' page.**")
     elif model_option == "Random Forest":
         ConfusionMatrixDisplay.from_estimator(model, X_test_scaled, y_test, ax=ax, cmap='Oranges')
         st.pyplot(fig)
-        st.write(f"Using the {model_option} model, the confusion matrix shows a higher rate of misclassifying 'Non-Diabetic' as 'neutral or Pre-Diabetic or Diabetic' (false postives) than misclassifying 'Pre-Diabetic or Diabetic' customers as 'Non-Diabetic' (false negatives).")
-        st.write(f"This suggests the {model_option} model has a strong tendency of labeling non-diabetics as pre-diabetic or diabetic, showing a weakness of false positive labels.")
+        st.write(f"Using the {model_option} model, the confusion matrix shows a higher rate of misclassifying 'Non-Diabetic' as 'neutral or Pre-Diabetic or Diabetic' (false postives) than misclassifying 'Pre-Diabetic or Diabetic' as 'Non-Diabetic' (false negatives).")
+        st.write(f"This suggests the {model_option} model has a strong tendency to label non-diabetics as pre-diabetic or diabetic, showing a weakness in producing false positive labels.")
         st.write(f"**Out of all the model types, {model_option} had the second highest test accuracy score.**")
     # Make Predictions Page
 elif page == "Make Your Own Predictions!":

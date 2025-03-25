@@ -84,8 +84,7 @@ elif page == "Data Overview":
     |*Education*| A education classification code based on the respondent's education level: 1:No School, 2:Elementary, 3:Some High School, 4:High School Graduate, 5:Some College, 6:College Graduate|         
     |*Income*| An income classification code base on the respondent's income level: 1:Less Than \$10K , 2:Less Than \$15K, 3:Less Than \$20K, 4:Less Than \$25K, 5:Less Than \$35K, 6:Less Than \$50K, 7:Less Than \$75K, 8:\$75K Or More  |      
     |*Produce Consumption Score*| A self created engineered feature that combines a respondent's fruit and vegetable consumption scores, for a maximum out of 2. This feature adds up a respondent's 'Consumes Fruit' & 'Consumes Vegetables' values together |
-    |*Overall Health Score*| A self created engineered feature that combines a respondent's scores for their mental and physical health in the last 30 days, for a total maximum of 60. This feature adds up a respondent's 'Mental Health' & 'Physical Health' self ratings together|
-    |*High Level Score*| A self created engineered feature that combines a respondent's blood pressure status, their specific BMI and their high cholesterol status all together to get an assessment of their heart health risk. This feature adds up the 'High Blood Pressure', 'BMI', and 'High Cholesterol' values together |  
+    |*Overall Health Score*| A self created engineered feature that combines a respondent's scores for their mental and physical health in the last 30 days, for a total maximum of 60. This feature adds up a respondent's 'Mental Health' & 'Physical Health' self ratings together| 
     """)
 
     # Dataset Display
@@ -163,7 +162,7 @@ elif page == "Exploratory Data Analysis":
 # Model Training and Evaluation Page
 elif page == "Training Models & Their Evaluations":
     st.title("Classification Model Types & Trainings with Performance Evaluations")
-    st.subheader("Choose a classification model type to train on the dataset to see its accuracy scores & corresponding confusion matrix.")
+    st.subheader("Choose a classification model type to train on the dataset, to see its accuracy scores & corresponding confusion matrix.")
     st.write("The baseline model had an accuracy score of 50.00%, so any of these model types need to have a higher accuracy score than the baseline to be worth using!")
 
 
@@ -213,25 +212,25 @@ elif page == "Training Models & Their Evaluations":
     elif model_option == "Logistic Regression":
         ConfusionMatrixDisplay.from_estimator(model, X_test_scaled, y_test, ax=ax, cmap='Greens')
         st.pyplot(fig)
-        st.write(f"Using the {model_option} model, the confusion matrix shows a higher rate of misclassifying 'Non-Diabetic' as 'neutral or Pre-Diabetic or Diabetic' (false postives) than misclassifying 'Pre-Diabetic or Diabetic' as 'Non-Diabetic' (false negatives).")
+        st.write(f"Using the {model_option} model, the confusion matrix shows a higher rate of misclassifying 'Non-Diabetic' as 'neutral or Pre-Diabetic or Diabetic' (false positives) than misclassifying 'Pre-Diabetic or Diabetic' as 'Non-Diabetic' (false negatives).")
         st.write(f"This suggests the {model_option} model has a strong tendency to label non-diabetics as pre-diabetic or diabetic, showing a weakness in producing false positive labels.")
         st.write(f"**Out of all the model types, {model_option} had the highest test set accuracy score. This logistic regression model will be used on the 'Make Your Own Predictions!' page.**")
     elif model_option == "Random Forest":
         ConfusionMatrixDisplay.from_estimator(model, X_test_scaled, y_test, ax=ax, cmap='Oranges')
         st.pyplot(fig)
-        st.write(f"Using the {model_option} model, the confusion matrix shows a higher rate of misclassifying 'Non-Diabetic' as 'neutral or Pre-Diabetic or Diabetic' (false postives) than misclassifying 'Pre-Diabetic or Diabetic' as 'Non-Diabetic' (false negatives).")
+        st.write(f"Using the {model_option} model, the confusion matrix shows a higher rate of misclassifying 'Non-Diabetic' as 'neutral or Pre-Diabetic or Diabetic' (false positives) than misclassifying 'Pre-Diabetic or Diabetic' as 'Non-Diabetic' (false negatives).")
         st.write(f"This suggests the {model_option} model has a strong tendency to label non-diabetics as pre-diabetic or diabetic, showing a weakness in producing false positive labels.")
         st.write(f"**Out of all the model types, {model_option} had the second highest test accuracy score.**")
     # Make Predictions Page
 elif page == "Make Your Own Predictions!":
     st.title("Make Your Own Diabetic Status Prediction")
     container = st.container(border=True)
-    container.subheader("Use 24 features to input in a logistic regression classification model")
+    container.subheader("Use 23 features to input in a logistic regression classification model")
     container.subheader("**Adjust the feature scale values below to make your own predictions on whether someone would be classified as 'Non-Diabetic' or 'Pre-Diabetic or Diabetic'**")
     
 
     # User inputs for prediction
-    high_blood_pressure = st.slider("High Blood Pressure ---> 0 - No, 1 - Yes", min_value=0, max_value=1, value=0)
+    high_blood_pressure = st.slider("If a respondent has been told they have high blood pressure by a doctor, nurse, or other health professional: st.tabs(0 - No, 1 - Yes"), min_value=0, max_value=1, value=0))
     high_cholesterol = st.slider("High Cholesterol ---> 0 - No, 1 - Yes", min_value=0, max_value=1, value=1)
     cholesterol_check = st.slider("Cholesterol Check --> 0 - No, 1 - Yes", min_value=0, max_value=1, value=0)
     bmi = st.slider("BMI ---> Choose a BMI: 10 to 100", min_value=10, max_value=100, value=50)
@@ -253,9 +252,7 @@ elif page == "Make Your Own Predictions!":
     education = st.slider("Education ---> 1 = No School, 2 = Elementary, 3 = Some High School, 4 = High School Graduate, 5 = Some College, 6 = College Graduate:", min_value=1, max_value=6, value=3)
     income = st.slider("Income ---> 1 = Less Than \$10K , 2 = Less Than \$15K, 3 = Less Than \$20K, 4 = Less Than \$25K, 5 = Less Than \$35K, 6 = Less Than \$50K, 7 = Less Than \$75K, 8 = \$75K Or More ", min_value=1, max_value=8, value=4)
     pcs = st.slider("Produce Consumption Score ---> Choose a score from 0 to 2", min_value=0, max_value=2, value=1)
-    ohs = st.slider("Overall Health Score ---> Choose a score from 0 to 60", min_value=17, max_value=65, value=10)
-    hls = st.slider("High Level Score ---> Choose a score from 0 to 80", min_value=0, max_value=80, value=25)
-
+    ohs = st.slider("Overall Health Score ---> Choose a score from 0 to 60", min_value=0, max_value=60, value=10)
     # User input dataframe
     #'':[] ANSWER FOR TEMPLATES!!!!!!
     user_input = pd.DataFrame({
@@ -281,8 +278,7 @@ elif page == "Make Your Own Predictions!":
         'Education': [education],
         'Income': [income],
         'Produce Consumption Score': [pcs],
-        'Overall Health Score': [ohs],
-        'High Level Score': [hls]
+        'Overall Health Score': [ohs]
     })
 
     st.write("### Your Input Values:")

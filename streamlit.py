@@ -34,7 +34,7 @@ if page == "Home":
         This app provides data overview information, exploratory data analysis, training 3 types of classification machine learning models with their accuracy evaluations and a logistic regression classification machine learning model that helps predict the diabetic status of a person based on 24 features through user input via sliding scales.
     """)
     st.write("""
-        This model was chosen because of its highest accuracy score on new data, out of the 3 different types of classification models shown in this Streamlit app.
+        Logistic regression model type was chosen because of its highest accuracy score on new data, out of the 3 different types of classification models shown in this Streamlit app.
     """)
     st.image('images/DBinfographic.jpg')
     st.write("""
@@ -48,15 +48,15 @@ elif page == "Data Overview":
 
     st.subheader("About the Data")
     st.write("""
-      The diabetes health indicatores dataset includes data from over 70,692 respondents reported information, where respondents were asked 21 different questions, to be used as features, in regaurds to their current health status and socioeconomic factors.
+      The diabetes health indicators dataset includes data was dervied from the 2015 CDC Behavioral Risk Factor Serveillance System survey, with information from over 70,692 respondents. Respondents were asked 21 different questions, to be used as features, regaurding to their current health status, life style choices and socioeconomic factors.
+    """) 
+    st.write("""
+      The dataset was pre-numerically encoded, but contained both numeric and categorical features, including the target variable of whether a respondent had a diabetic status of either 'non-diabetic' or 'pre-diabetic or diabetic'.
     """)
     st.write("""
-      The dataset was pre numerically encoded, but contained both numeric and categorical features, with whether a respondent had a diabetic status of either 'non-diabetic' or 'pre-diabetic or diabetic'.
+      3 additional engineered features were created from the 21 original features, creating a total of 24 features.
     """)
-    st.write("""
-      3 additional engineered features were created from the 21 original features, creating a total of 24 features total.
-    """)
-    st.write("Kaggle dataset: https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset?select=diabetes_binary_5050split_health_indicators_BRFSS2015.csv")
+    st.write("This dataset was sourced from Kaggle: https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset?select=diabetes_binary_5050split_health_indicators_BRFSS2015.csv")
     st.subheader("Data Dictionary")
     st.markdown("""
     | Feature   | Explination|
@@ -72,18 +72,18 @@ elif page == "Data Overview":
     |*Physical Activity*| If a respondent reported doing physical activity or exercise during the past 30 days other than their regular job: 0 - No, 1 - Yes|            
     |*Consumes Fruit*|If a respondent consumes fruit one or more times a day: 0 - No, 1 - Yes|            
     |*Consumes Vegetables*|If a respondent consumes vegetables one or more times a day: 0 - No, 1 - Yes|         
-    |*Heavy Alcohol Consumption*| For heavy alcohol consumers: if adult men have more the 14 drinks per week or adult women having more than 7 drinks per week: 0 - No, 1 - Yes |          
+    |*Heavy Alcohol Consumption*| For heavy alcohol consumers: if adult men have more than 14 drinks per week or adult women having more than 7 drinks per week: 0 - No, 1 - Yes |          
     |*Health Care*| If a respondent has any kind of health care coverage, including health insurance, prepaid plans such as HMOs or government plans such as Medicare or Indian Health Service: 0 - No, 1 - Yes |          
     |*No Doctor Due To Cost*| If there was a time in the past 12 months that a respondent needed to see a doctor but couldn't because of cost: 0 - No, 1 - Yes|     
-    |*General Health*| Asking the respondent what they would rate their own health on a 1-5 scale: 1 - Poor, 2 - Fair, 3 - Good, 4 - Very Good, 5 - Excellent|          
-    |*Mental Health*| Asking the respondent how many days in the last 30 days was their mental health not good, in regards to stress, depression or emotional problems: 0 - 30|          
-    |*Physical Health*| Asking the respondent how many days in the last 30 days was their physical health not good - in regards to physically illness and injury: 0 - 30 |         
+    |*General Health*| Asking the respondent what they would rate their own health on a scale of 1-5: 1 - Poor, 2 - Fair, 3 - Good, 4 - Very Good, 5 - Excellent|          
+    |*Mental Health*| Asking the respondent how many days in the last 30 days was their mental health not good, in regards to stress, depression or emotional problems: Range of 0 - 30|          
+    |*Physical Health*| Asking the respondent how many days in the last 30 days was their physical health not good - in regards to physically illness and injury: Range of 0 - 30 |         
     |*Difficulty Walking*| If a respondent has serious difficulty walking or climbing stairs: 0 - No, 1 - Yes|      
     |*Sex*| A respondent's gender: 0 - Female, 1 - Male|         
     |*Age*| An age classification code based on the respondent's age: 1: 18-24, 2: 25-29, 3: 30-34, 4:35-39, 5:40-44, 6:45-49, 7:50-54, 8:55-59, 9:60-64, 10:65-69, 11:70-74, 12:75-79, 13:80 Or Older |         
     |*Education*| A education classification code based on the respondent's education level: 1:No School, 2:Elementary, 3:Some High School, 4:High School Graduate, 5:Some College, 6:College Graduate|         
-    |*Income*| An income classification code base on the respondent's education level: 1:Less Than \$10K , 2:Less Than \$15K, 3:Less Than \$20K, 4:Less Than \$25K, 5:Less Than \$35K, 6:Less Than \$50K, 7:Less Than \$75K, 8:\$75K Or More  |      
-    |*Produce Consumption Score*| A self created engineered feature that combines a respondent's fruit and vegetable consumption scores, for a maximum out of 2. This feature adds up a respondent's 'Consumes Fruit' & 'Consumes Vegtables' values together |
+    |*Income*| An income classification code base on the respondent's income level: 1:Less Than \$10K , 2:Less Than \$15K, 3:Less Than \$20K, 4:Less Than \$25K, 5:Less Than \$35K, 6:Less Than \$50K, 7:Less Than \$75K, 8:\$75K Or More  |      
+    |*Produce Consumption Score*| A self created engineered feature that combines a respondent's fruit and vegetable consumption scores, for a maximum out of 2. This feature adds up a respondent's 'Consumes Fruit' & 'Consumes Vegetables' values together |
     |*Overall Health Score*| A self created engineered feature that combines a respondent's scores for their mental and physical health in the last 30 days, for a total maximum of 60. This feature adds up a respondent's 'Mental Health' & 'Physical Health' self ratings together|
     |*High Level Score*| A self created engineered feature that combines a respondent's blood pressure status, their specific BMI and their high cholesterol status all together to get an assessment of their heart health risk. This feature adds up the 'High Blood Pressure', 'BMI', and 'High Cholesterol' values together |  
     """)
@@ -115,9 +115,10 @@ elif page == "Exploratory Data Analysis":
         st.subheader("Histograms - Visualizing Numerical Distributions")
         h_selected_col = st.selectbox("Select a numeric variable for the histogram:", num_cols)
         if h_selected_col:
-            chart_title = f"Distribution of {h_selected_col.title().replace('_', ' ')}"
+            chart_title = f"Distribution of {h_selected_col.replace('_', ' ')}"
             if st.checkbox("Show by Diabetic Status"):
-                st.plotly_chart(px.histogram(ldf, x=h_selected_col, color='Diabetic Status', title=chart_title, barmode='overlay'))
+                diabetes_color_change = {'Non-Diabetic':'yellow', 'Pre-Diabetic or Diabetic':'red'}
+                st.plotly_chart(px.histogram(ldf, x=h_selected_col, color = 'Diabetic Status', color_discrete_map = diabetes_color_change, title=chart_title, barmode='overlay', opacity=.8))
             else:
                 st.plotly_chart(px.histogram(ldf, x=h_selected_col, title=chart_title))
                 
@@ -128,7 +129,8 @@ elif page == "Exploratory Data Analysis":
         if b_selected_col:
             chart_title = f"Distribution of {b_selected_col.title().replace('_', ' ')}"
             if st.checkbox("Show by Diabetic Status"):
-                st.plotly_chart(px.box(ldf, x=b_selected_col, color='Diabetic Status', title=chart_title))
+                diabetes_color_change = {'Non-Diabetic':'yellow', 'Pre-Diabetic or Diabetic':'red'}
+                st.plotly_chart(px.box(ldf, x=b_selected_col, color='Diabetic Status', color_discrete_map = diabetes_color_change, title=chart_title))
             else:
                 st.plotly_chart(px.box(ldf, x=b_selected_col, title=chart_title))
 
@@ -139,7 +141,8 @@ elif page == "Exploratory Data Analysis":
         if selected_col_x and selected_col_y:
             chart_title = f"{selected_col_x.title().replace('_', ' ')} vs. {selected_col_y.title().replace('_', ' ')}"
             if st.checkbox("Show by Diabetic Status"):
-                st.plotly_chart(px.scatter(ldf, x=selected_col_x, y=selected_col_y, color='Diabetic Status', title=chart_title))
+                diabetes_color_change = {'Non-Diabetic':'yellow', 'Pre-Diabetic or Diabetic':'red'}
+                st.plotly_chart(px.scatter(ldf, x=selected_col_x, y=selected_col_y, color='Diabetic Status', color_discrete_map = diabetes_color_change, title=chart_title))
             else:
                 st.plotly_chart(px.scatter(ldf, x=selected_col_x, y=selected_col_y, title=chart_title))
 
@@ -149,7 +152,8 @@ elif page == "Exploratory Data Analysis":
         if selected_col:
             chart_title = f'Distribution of {selected_col.title()}'
             if st.checkbox("Show by Diabetic Status"):
-                st.plotly_chart(px.histogram(ldf, x=selected_col, color='Diabetic Status', title=chart_title, barmode='overlay'))
+                diabetes_color_change = {'Non-Diabetic':'yellow', 'Pre-Diabetic or Diabetic':'red'}
+                st.plotly_chart(px.histogram(ldf, x=selected_col, color='Diabetic Status', color_discrete_map = diabetes_color_change, title=chart_title, barmode='overlay', opacity = .8))
             else:
                 st.plotly_chart(px.histogram(ldf, x=selected_col, title=chart_title))
         
@@ -235,7 +239,7 @@ elif page == "Make Your Own Predictions!":
     hdoa = st.slider("Heart Disease or Attack---> 0 - No, 1 - Yes:", min_value=0, max_value=1, value=1)
     physical_activity = st.slider("Physical Activity ---> 0 - No, 1 - Yes:", min_value=0, max_value=1, value=0)
     consumes_fruit = st.slider("Consumes Fruit ---> 0 - No, 1 - Yes:", min_value=0, max_value=1, value=1)
-    consumes_vegtables = st.slider("Consumes Vegetables ---> 0 - No, 1 - Yes:", min_value=0, max_value=1, value=0)
+    consumes_vegetables = st.slider("Consumes Vegetables ---> 0 - No, 1 - Yes:", min_value=0, max_value=1, value=0)
     heavy_alcohol_consumption = st.slider("Heavy Alcohol Consumption ---> 0 - No, 1 - Yes", min_value=0, max_value=1, value=1)
     health_care = st.slider("Health Care ---> 0 - No, 1 - Yes", min_value=0, max_value=1, value=1)
     nddtc = st.slider("No Doctor Due To Cost ---> 0 - No, 1 - Yes", min_value=0, max_value=1, value=0)
@@ -263,7 +267,7 @@ elif page == "Make Your Own Predictions!":
         'Heart Disease or Attack': [hdoa],
         'Physical Activity': [physical_activity],
         'Consumes Fruit': [consumes_fruit],
-        'Consumes Vegtables': [consumes_vegtables],
+        'Consumes Vegetables': [consumes_vegetables],
         'Heavy Alcohol Consumption': [heavy_alcohol_consumption],
         'Health Care': [health_care],
         'No Doctor Due To Cost': [nddtc],

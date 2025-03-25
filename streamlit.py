@@ -252,7 +252,7 @@ elif page == "Make Your Own Predictions!":
     education = st.slider("Education: What is the highest education level finished?: 1 = No School, 2 = Elementary, 3 = Some High School, 4 = High School Graduate, 5 = Some College, 6 = College Graduate:", min_value=1, max_value=6, value=1)
     income = st.slider("Income: Choose an numeric value based on income level: 1 = Less Than \$10K , 2 = Less Than \$15K, 3 = Less Than \$20K, 4 = Less Than \$25K, 5 = Less Than \$35K, 6 = Less Than \$50K, 7 = Less Than \$75K, 8 = \$75K Or More ", min_value=1, max_value=8, value=1)
     pcs = st.slider("Produce Consumption Score: The added combination of fruit & vegetable servings eaten a day: 0 to 2", min_value=0, max_value=2, value=0)
-    ohs = st.slider("Overall Health Score: The added combination of number of days mental & physical health was not good: Choose a score from 0 to 60:", min_value=0, max_value=60, value=0)
+    ohs = st.slider("Overall Health Score: The added combination of number of days mental & physical health was not good: 0 to 60:", min_value=0, max_value=60, value=0)
     
     # User input dataframe
     user_input = pd.DataFrame({
